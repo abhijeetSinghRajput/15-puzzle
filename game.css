@@ -53,3 +53,26 @@ body{
     margin-bottom: 10px;
     text-transform: capitalize;
 }
+
+.controller{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: fixed;
+    background-color: inherit;
+    width: 100px;
+    aspect-ratio: 1;
+    bottom: 10px;
+    transform: rotate(45deg);
+}
+
+.controller button{
+    aspect-ratio: 1;
+    border-radius: 13px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}

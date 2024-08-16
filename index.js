@@ -1,9 +1,35 @@
 const pieces = [...document.querySelectorAll('.piece')];
 const bestScore = document.querySelector('#best-score value');
 const scoreCount = document.querySelector('#score-count value');
+const btns = [...document.querySelectorAll('button')];
 
 const gameEndSound = new Audio('./game-end.mp3');
 const moveSound = new Audio('./move.mp3');
+
+btns.forEach(btn=>{
+    btn.addEventListener('click', ({target})=>{
+        let isLegal = null;
+        switch(target.id){
+            case 'up': isLegal = move(DOWN); break;
+            case 'right': isLegal = move(LEFT); break;
+            case 'down': isLegal = move(UP); break;
+            case 'left': isLegal = move(RIGHT); break;
+            default: break;
+        }
+        if (isLegal) {
+            moveSound.play();
+            scoreCount.textContent = Number(scoreCount.textContent) + 1;
+        }
+        if (isWin()) {
+            const score = scoreCount.textContent;
+            if(Number(score) < best){
+                best = score;
+                localStorage.setItem('bestScore', score);
+            }
+            newGame();
+        }
+    })
+})
 
 let best = Infinity;
 // ==========================================
